@@ -1,12 +1,9 @@
 import React from 'react'
 import './App.css';
-
-//components
-import Header from './Header'
+import Header from './Header';
 function App() {
   return (
     <div className="app">
-      <h1>let's gooo</h1> 
       {/* HEADER */}
       <Header/>
       {/* SIDEBAR */}
