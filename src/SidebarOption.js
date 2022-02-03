@@ -1,8 +1,9 @@
-import React from 'react'
 import './SidebarOption.css'
+// import { useHistory } from "react-router-dom"
 const SidebarOption = ({Icon, title}) => {
     return (
-        <div className="sidebarOption">
+        // onClick={addChannelOption ? addChannel : selectChannelOption}
+        <div className="sidebarOption" >
             {Icon && <Icon className="sidebarOption__icon"/>}
             {Icon ?
              <h3>{title}</h3> 

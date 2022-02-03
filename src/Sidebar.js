@@ -1,4 +1,4 @@
-import React from 'react'
+import {useState, useEffect} from 'react'
 import './Sidebar.css'
 import SidebarOption from './SidebarOption'
 import FiberManualRecordIcon from '@mui/icons-material/FiberManualRecord';
@@ -13,7 +13,23 @@ import FileCopyIcon from '@mui/icons-material/FileCopy';
 import ExpandLessIcon from '@mui/icons-material/ExpandLess';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import AddIcon from '@mui/icons-material/Add';
+import db from "./firebase";
+import { collection, getDocs } from 'firebase/firestore';
 const Sidebar = () => {
+    const [channels, setChannels] = useState([]);
+    const roomCollectionRef = collection(db, "rooms")
+    const getCities = async (db) => {
+        const roomSnapshot = await getDocs(roomCollectionRef);
+        const cityList = roomSnapshot.docs.map(doc => ({...doc.data(), id: doc.id}));
+        setChannels(cityList) ;
+    }
+    useEffect(()=>{
+        getCities()
+    }, [])
+    
+
+    console.log(db)
+    console.log(channels)
     return (
         <div className="sidebar">
             <div className="sidebar__header">
@@ -36,6 +52,11 @@ const Sidebar = () => {
             <SidebarOption Icon={ExpandMoreIcon} title="Channels"/>
             <hr/>
             <SidebarOption Icon={AddIcon} title="Add Channel"/>
+            {channels.map((channel)=>{
+                return(
+                    <SidebarOption title={channel.name} id={channel.id}/>
+                )
+            })}
         </div>
     )
 }
