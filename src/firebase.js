@@ -3,14 +3,14 @@ import { getFirestore} from '@firebase/firestore';
 
 
 const firebaseConfig = {
-    apiKey: "AIzaSyDztA3v8MI0entiWAqx4mO8tTPRWGI2cwg",
-    authDomain: "slack-clone-c6aaa.firebaseapp.com",
-    projectId: "slack-clone-c6aaa",
-    storageBucket: "slack-clone-c6aaa.appspot.com",
-    messagingSenderId: "509461723221",
-    appId: "1:509461723221:web:a0ee83f423fb91fae0fcdc",
-    measurementId: "G-CTCFLWPE6G"
-  };
+  apiKey: "AIzaSyATYuLgNaHmlUf7HYCAgnW3YQSCyK8hbLs",
+  authDomain: "slack-clone-f1b69.firebaseapp.com",
+  projectId: "slack-clone-f1b69",
+  storageBucket: "slack-clone-f1b69.appspot.com",
+  messagingSenderId: "273845313267",
+  appId: "1:273845313267:web:862850b926cdd31fa06186",
+  measurementId: "G-940BPDYD9X"
+};
 
 const firebaseApp = initializeApp(firebaseConfig);
 const db = getFirestore(firebaseApp);

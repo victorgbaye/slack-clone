@@ -12,7 +12,7 @@
     padding: 20px;
     border-bottom: 1px solid lightgray;
 }
-
+ 
 .chat__channelName{
     display: flex;
     text-transform: lowercase;

@@ -11,7 +11,7 @@ function App() {
       <Router>
         <Header/>
         <div className="app__body">
-          <Sidebar/>
+          <Sidebar/> 
           <Routes>
             <Route path="/room/:roomId"  element={<Chat/>}/>
             <Route path="/">

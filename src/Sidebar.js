@@ -14,7 +14,7 @@ import ExpandLessIcon from '@mui/icons-material/ExpandLess';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import AddIcon from '@mui/icons-material/Add';
 import db from "./firebase";
-import { collection, getDocs } from 'firebase/firestore';
+import { collection, getDocs, addDoc } from 'firebase/firestore';
 const Sidebar = () => {
     const [channels, setChannels] = useState([]);
     const roomCollectionRef = collection(db, "rooms")
@@ -22,6 +22,12 @@ const Sidebar = () => {
         const roomSnapshot = await getDocs(roomCollectionRef);
         const cityList = roomSnapshot.docs.map(doc => ({...doc.data(), id: doc.id}));
         setChannels(cityList) ;
+    }
+    const addChannels = async()=>{
+        const channelName = prompt('please enter thechannel name')
+        if(channelName){
+            await addDoc(roomCollectionRef, {name: channelName})
+        }
     }
     useEffect(()=>{
         getCities()
@@ -41,7 +47,7 @@ const Sidebar = () => {
             </div>
             <SidebarOption Icon={InsertCommentIcon} title="Threads"/>
             <SidebarOption Icon={InboxIcon} title="Mentions & reactions"/>
-            <SidebarOption Icon={DraftsIcon} title="Saved items"/>
+            <SidebarOption Icon={DraftsIcon} title ="Saved items"/>
             <SidebarOption Icon={BookmarkBorderIcon} title="Channel browser"/>
             <SidebarOption Icon={PeopleAltIcon} title="People & user groups"/>
             <SidebarOption Icon={AppsIcon} title="Apps"/>
@@ -51,7 +57,7 @@ const Sidebar = () => {
             <hr/>
             <SidebarOption Icon={ExpandMoreIcon} title="Channels"/>
             <hr/>
-            <SidebarOption Icon={AddIcon} title="Add Channel"/>
+            <SidebarOption Icon={AddIcon} addChannelOption addChannels={addChannels} title="Add Channel"/>
             {channels.map((channel)=>{
                 return(
                     <SidebarOption title={channel.name} id={channel.id}/>

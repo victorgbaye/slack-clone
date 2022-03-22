@@ -1,9 +1,21 @@
-import './SidebarOption.css'
-// import { useHistory } from "react-router-dom"
-const SidebarOption = ({Icon, title}) => {
+import './SidebarOption.css';
+import { useNavigate } from "react-router-dom";
+import db from "./firebase";
+import {addDoc} from "firebase/firestore"
+const SidebarOption = ({Icon, title, id, addChannelOption, addChannels}) => {
+    const navigator = useNavigate()
+    const selectChannel =() =>{
+        if(id){
+            navigator(`/room/${id}`)
+        }
+        else{
+            navigator(title);
+        }
+    }
+  
     return (
-        // onClick={addChannelOption ? addChannel : selectChannelOption}
-        <div className="sidebarOption" >
+         
+        <div className="sidebarOption" onClick={ addChannelOption? addChannels  : selectChannel}>
             {Icon && <Icon className="sidebarOption__icon"/>}
             {Icon ?
              <h3>{title}</h3> 
